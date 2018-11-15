@@ -8,6 +8,7 @@
            아이디를 입력하세요 
          </label>
          <input type="text" name="name" v-model="name">
+         <p v-if="feedback" class="red-text">{{ feedback }}</p>
          <button class="btn teal">채팅방 들어가기</button>
        </form>
      </div>
@@ -20,12 +21,19 @@ export default {
   name: 'Welcome',
   data () {
     return {
-      name: null
+      name: null,
+      feedback: null
     }
   },
   methods: {
     enterChat() {
-      console.log(this.name)
+      if(this.name) {
+        this.feedback = null 
+        this.$router.push({ name: 'Chat', params: { name: this.name }})
+
+      } else {
+        this.feedback = "아이디를 입력해주세요"
+      }
     }
   }
 }
