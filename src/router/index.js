@@ -18,8 +18,11 @@ export default new Router({
       component: Chat,
       props: true,
       beforeEnter: (to, from, next) => {
-          if(to.params.name) next()
-          next({ name: 'Welcome'})
+        if (to.params.name) {
+          next()
+        } else {
+          next({ name: 'Welcome' })
+        }
       }
     }
   ]
